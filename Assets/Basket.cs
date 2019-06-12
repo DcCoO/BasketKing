@@ -49,6 +49,16 @@ public class Basket : MonoBehaviour {
             if (triggerLower) {
                 anim.SetTrigger("Point");
                 print("PONTO!");
+                source.Stop();
+                source.clip = score;
+                source.Play();
+
+                //return to menu
+                Memory.WinLevel();
+                yield return new WaitForSeconds(1.5f);
+                SceneController.instance.LoadSelectLevel();
+
+
             }
             triggerUpper = triggerLower = false;
         }

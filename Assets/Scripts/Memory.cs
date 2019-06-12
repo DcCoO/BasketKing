@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class Memory: IEnumerable<Node> {
 
+    public static int currentLevel {
+        get {
+            return PlayerPrefs.GetInt("CurrentLevel", 0);
+        }
+        set {
+            PlayerPrefs.SetInt("CurrentLevel", value);
+        }
+    }
+
     public static bool[] levels {
         get {
             bool[] levelArray = PlayerPrefsX.GetBoolArray("Levels", false, 50);
@@ -20,7 +29,8 @@ public class Memory: IEnumerable<Node> {
         }
     }
 
-    public static void WinLevel(int n) {
+    public static void WinLevel() {
+        int n = currentLevel;
         bool[] levelArray = levels;
         levelArray[n] = true;
 

@@ -8,11 +8,14 @@ public class SceneController : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
+        instance = this;
+        /*
         if (instance == null) {
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else Destroy(gameObject);
+        */
 	}
 	
 	public void LoadMenu() {
@@ -24,7 +27,7 @@ public class SceneController : MonoBehaviour {
     }
 
     public void LoadLevel(int level) {
-        PlayerPrefs.SetInt("CurrentLevel", level);
+        Memory.currentLevel = level;
         SceneManager.LoadScene("Game");
     }
 }

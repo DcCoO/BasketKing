@@ -1940,12 +1940,12 @@ Prefab:
         type: 2}
       propertyPath: score
       value: 
-      objectReference: {fileID: 8300000, guid: 35796d81b241da440a1a50a182e4f3e9, type: 3}
+      objectReference: {fileID: 8300000, guid: 05e03e80cb1b77545b8ce7e1a0707ed1, type: 3}
     - target: {fileID: 114658338823053220, guid: f55b7463fada1494d8c57363d5e89867,
         type: 2}
       propertyPath: rimshot
       value: 
-      objectReference: {fileID: 8300000, guid: eb94e58a275a1a04aa6a59c4302e8b77, type: 3}
+      objectReference: {fileID: 8300000, guid: d9289ef64c517ef498a5578de09f1202, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f55b7463fada1494d8c57363d5e89867, type: 2}
   m_IsPrefabAsset: 0
@@ -2261,7 +2261,7 @@ GameObject:
   - component: {fileID: 2096470455}
   - component: {fileID: 2096470454}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

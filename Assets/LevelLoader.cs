@@ -6,7 +6,7 @@ public class LevelLoader : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //LoadLevel();
+        LoadLevel();
 	}
 	
 	// Update is called once per frame
@@ -17,8 +17,8 @@ public class LevelLoader : MonoBehaviour {
 	}
 
     public void LoadLevel() {
-        int level = PlayerPrefs.GetInt("CurrentLevel", 1);
-        Level lvl = JsonUtility.FromJson<Level>(LevelList.level[level - 1]);
+        int level = Memory.currentLevel;
+        Level lvl = JsonUtility.FromJson<Level>(LevelList.level[level]);
         BallController.instance.SetPosition(lvl.ballPosition);
         Basket.instance.transform.position = lvl.basketPosition;
     }

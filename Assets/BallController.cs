@@ -27,10 +27,9 @@ public class BallController : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.GetMouseButtonUp(1)) {
+        if (Input.GetMouseButtonDown(0) && rb.constraints != RigidbodyConstraints2D.FreezeAll) {
             ResetPosition();
         }
-        print(rb.velocity);
     }
 
     public void SetPosition(Vector2 newPosition) {
@@ -45,7 +44,7 @@ public class BallController : MonoBehaviour {
     }
 
     public void ResetPosition() {
-        StartCoroutine(ResetPositionRoutine());
+        if(gameObject.activeSelf) StartCoroutine(ResetPositionRoutine());
     }
 
     void OnBecameInvisible() {

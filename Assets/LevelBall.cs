@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Text.RegularExpressions;
+using UnityEngine;
 
 public class LevelBall : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class LevelBall : MonoBehaviour {
 
     private void Awake() {
         t = transform;
+        id = int.Parse(Regex.Match(gameObject.name, @"\d+").Value);
     }
     // Use this for initialization
     void Start () {
@@ -16,6 +18,10 @@ public class LevelBall : MonoBehaviour {
 
     public Vector2 GetPosition() {
         return t.position;
+    }
+
+    private void OnMouseDown() {
+        SceneController.instance.LoadLevel(id);
     }
 
     public void LoadLevel() {

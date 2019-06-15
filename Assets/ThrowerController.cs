@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class ThrowerController : MonoBehaviour {
     
     float max = 0.4f * (float)Screen.height, scale;
-    public float maxPower, maxSpin;
 
     Vector2 beginPos, direction;
     BallController b;
@@ -36,7 +35,7 @@ public class ThrowerController : MonoBehaviour {
         if (b == null) return;
         arrowOutline.size = new Vector2(0, arrowOutline.size.y);
         b.arrowRenderer.size = new Vector2(0, arrowOutline.size.y);
-        b.Throw(direction, scale * maxPower, SpinBar.instance.value * maxSpin);
+        b.Throw(direction, scale, SpinBar.instance.value);
     }
 
 

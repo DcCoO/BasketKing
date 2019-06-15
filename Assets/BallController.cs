@@ -10,9 +10,14 @@ public class BallController : MonoBehaviour {
     [HideInInspector] public Transform t;
     TrailRenderer tr;
 
+    [Header("Ball Attributes")]
+    public float maxSpeed;
+    public float maxSpin;
+
     public Color color;
     public Transform arrow;
     public SpriteRenderer arrowRenderer;
+    public AudioSource source;
 
     Vector2 defaultPos;
     private void Awake() {
@@ -20,7 +25,6 @@ public class BallController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         tr = GetComponent<TrailRenderer>();
         defaultPos = transform.position;
-        GetComponent<SpriteRenderer>().color = color;
         tr.startColor = new Color(color.r, color.g, color.b, 0.66f);
         tr.endColor = new Color(color.r, color.g, color.b, 0f);
         t = transform;
@@ -30,6 +34,14 @@ public class BallController : MonoBehaviour {
         if (Input.GetMouseButtonDown(0) && rb.constraints != RigidbodyConstraints2D.FreezeAll) {
             ResetPosition();
         }
+        source.volume = Mathf.Min(1f, rb.velocity.magnitude / 10f);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if(collision.gameObject.tag == "Obstacle") {
+            source.Stop();
+            source.Play();
+        }
     }
 
     public void SetPosition(Vector2 newPosition) {
@@ -37,10 +49,10 @@ public class BallController : MonoBehaviour {
         ResetPosition();
     }
 
-    public void Throw(Vector2 direction, float power, float spin) {
+    public void Throw(Vector2 direction, float speedScale, float spinScale) {
         rb.constraints = RigidbodyConstraints2D.None;
-        rb.AddForce(direction.normalized * power, ForceMode2D.Impulse);
-        rb.AddTorque(-spin);
+        rb.AddForce(direction.normalized * speedScale * maxSpeed, ForceMode2D.Impulse);
+        rb.AddTorque(-spinScale * maxSpin);
     }
 
     public void ResetPosition() {
@@ -50,6 +62,7 @@ public class BallController : MonoBehaviour {
     void OnBecameInvisible() {
         ResetPosition();
     }
+
 
     IEnumerator ResetPositionRoutine() {
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -61,3 +74,5 @@ public class BallController : MonoBehaviour {
         tr.enabled = true;        
     }
 }
+
+

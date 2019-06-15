@@ -65,6 +65,35 @@ public class Memory: IEnumerable<Node> {
         return GetEnumerator();
     }
 
+
+    //0: hidden
+    //1: can buy
+    //2: bought
+    public static int[] balls {
+        get {
+            int[] ballArray = PlayerPrefsX.GetIntArray("Balls", 0, 16);
+            if(ballArray[0] == 0) {
+                ballArray[0] = 1;
+                PlayerPrefsX.SetIntArray("Levels", ballArray);
+            }
+            return ballArray;
+        }
+        set {
+            PlayerPrefsX.SetIntArray("Levels", value);
+        }
+    }
+
+    
+
+
+
+
+
+
+
+
+
+
     public static Node[] tree = new Node[] {
         new Node(parent: new int[]{}, children: new int[]{1}),          //0
         new Node(parent: new int[]{0}, children: new int[]{2,3}),       //1

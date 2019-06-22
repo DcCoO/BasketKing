@@ -11,6 +11,7 @@ public class TreeGenerator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         StartCoroutine(CreateEdges());
+        
     }
 
     IEnumerator CreateEdges() {

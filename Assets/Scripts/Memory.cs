@@ -74,13 +74,17 @@ public class Memory: IEnumerable<Node> {
             int[] ballArray = PlayerPrefsX.GetIntArray("Balls", 0, 16);
             if(ballArray[0] == 0) {
                 ballArray[0] = 1;
-                PlayerPrefsX.SetIntArray("Levels", ballArray);
+                PlayerPrefsX.SetIntArray("Balls", ballArray);
             }
             return ballArray;
         }
         set {
-            PlayerPrefsX.SetIntArray("Levels", value);
+            PlayerPrefsX.SetIntArray("Balls", value);
         }
+    }
+
+    public static void BuyBall(int n) {
+
     }
 
     

@@ -15,16 +15,18 @@ public class BallShop : MonoBehaviour {
     }
 	
 	public void Select() {
+        chosenBall = id;
         NotifyBalls();
     }
 
     public void Highlight() {
-        if(id != chosenBall) print("My id is " + id);
+        if (id == chosenBall && ballName.text != string.Empty) {
+            print("id = " + id + ", gameobject = " + gameObject.name);
+            print(ballName.text);
+            BuyPopup.instance.Choose(id);
+        }
     }
 
     public static int chosenBall = 0;
     public static Action NotifyBalls;
-    public static void Choose(int n) {
-
-    }
 }

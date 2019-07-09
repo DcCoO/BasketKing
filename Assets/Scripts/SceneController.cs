@@ -26,6 +26,10 @@ public class SceneController : MonoBehaviour {
         SceneManager.LoadScene("LevelSelect");
     }
 
+    public void LoadStore() {
+        SceneManager.LoadScene("Shop");
+    }
+
     public void LoadLevel(int level) {
         Memory.currentLevel = level;
         SceneManager.LoadScene("Game");

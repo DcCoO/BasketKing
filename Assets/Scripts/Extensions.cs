@@ -11,4 +11,8 @@ public static class Extensions {
         c.a = alpha;
         return c;
     }
+
+    public static Color Alpha(this Color c, float a) {
+        return new Color(c.r, c.g, c.b, a);
+    }
 }

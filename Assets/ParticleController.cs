@@ -7,6 +7,7 @@ public class ParticleController : MonoBehaviour {
 
     private void Awake() {
         instance = this;
+        print("ENTROU");
     }
     
     void Start () {

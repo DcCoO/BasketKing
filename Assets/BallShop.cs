@@ -10,7 +10,7 @@ public class BallShop : MonoBehaviour {
     public Image frame, sprite, coin;
     public Text ballName, price;
 	// Use this for initialization
-	void Awake () {
+	void Start () {
         NotifyBalls += Highlight;
     }
 	
@@ -21,10 +21,15 @@ public class BallShop : MonoBehaviour {
 
     public void Highlight() {
         if (id == chosenBall && ballName.text != string.Empty) {
-            print("id = " + id + ", gameobject = " + gameObject.name);
+            //if(gameObject) print("id = " + id + ", gameobject = " + gameObject.name);
             print(ballName.text);
             BuyPopup.instance.Choose(id);
         }
+    }
+
+    public static void Clear() {
+        chosenBall = 0;
+        NotifyBalls = null;
     }
 
     public static int chosenBall = 0;

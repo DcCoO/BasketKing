@@ -9,11 +9,11 @@ public class LevelBall : MonoBehaviour {
 
     private void Awake() {
         t = transform;
-        id = int.Parse(Regex.Match(gameObject.name, @"\d+").Value);
     }
-    // Use this for initialization
-    void Start () {
 
+    private void Start() {
+        id = int.Parse(Regex.Match(gameObject.name, @"\d+").Value);
+        sr.sprite = SpriteHolder.GetBall(levelBall[id]);
     }
 
     public Vector2 GetPosition() {
@@ -21,12 +21,22 @@ public class LevelBall : MonoBehaviour {
     }
 
     private void OnMouseDown() {
+        if (sr.color.a < 0.9f) return;
         SceneController.instance.LoadLevel(id);
     }
 
     public void LoadLevel() {
         SceneController.instance.LoadLevel(1);
     }
+
+    public static int[] levelBall = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+        3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+        4, 4, 4, 4, 4, 4, 4, 4, 4, 4
+    };
+
 	
 	// TODO evento troca de string de fase 
 }

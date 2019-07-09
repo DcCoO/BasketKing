@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\SceneController.cs" />
     <Compile Include="Assets\ShopBuilder.cs" />
     <Compile Include="Assets\SpinBar.cs" />
+    <Compile Include="Assets\SpriteHolder.cs" />
     <Compile Include="Assets\TextResizer.cs" />
     <Compile Include="Assets\Thrower.cs" />
     <Compile Include="Assets\ThrowerController.cs" />

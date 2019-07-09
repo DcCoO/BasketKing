@@ -7,8 +7,10 @@ public class ShopBuilder : MonoBehaviour {
     public GameObject ballShop;
     public BallList ballList;
     public BallShop[] balls;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
+
+        BallShop.Clear();
 
         int[] ballState = Memory.balls;
 

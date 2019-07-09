@@ -9,8 +9,13 @@ public class BuyPopup : MonoBehaviour {
     public Text ballDescription;
     public BallList ballList;
 
+    int ballIndex = 0;
+
     private void Awake() {
         instance = this;
+    }
+
+    private void Start() {
         Turn(false);
     }
 
@@ -23,10 +28,12 @@ public class BuyPopup : MonoBehaviour {
         ballPrice.text = BallStats.balls[n].price.ToString();
         ballImage.sprite = ballList.spriteList[n];
         ParticleController.instance.SetColor(BallStats.balls[n].startColor, BallStats.balls[n].endColor);
+        ballIndex = n;
         Turn(true);
     }
 
     public void Buy() {
+        Memory.BuyBall(ballIndex);
         Turn(false);
     }
 }

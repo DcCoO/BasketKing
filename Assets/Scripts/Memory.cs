@@ -14,38 +14,32 @@ public class Memory: IEnumerable<Node> {
         }
     }
 
-    public static bool[] levels {
+    public static int[] levels {
         get {
-            bool[] levelArray = PlayerPrefsX.GetBoolArray("Levels", false, 50);
-            if(!levelArray[0]) {
-                levelArray[0] = true;
-                PlayerPrefsX.SetBoolArray("Levels", levelArray);
-                return levelArray;
-            }
-            return levelArray;
+            return PlayerPrefsX.GetIntArray("Levels", 0, 50);
         }
         set {
-            PlayerPrefsX.SetBoolArray("Levels", value);
+            PlayerPrefsX.SetIntArray("Levels", value);
         }
     }
 
     public static void WinLevel() {
         int n = currentLevel;
-        bool[] levelArray = levels;
-        levelArray[n] = true;
+        int [] levelArray = levels;
+        levelArray[n] = 2;
 
         foreach(int u in tree[n]) {
-            if(tree[u].parent.All(v => levelArray[v])) {
-                levelArray[u] = true;
+            if(tree[u].parent.All(v => (levelArray[v] == 2))) {
+                levelArray[u] = Mathf.Max(levelArray[u], 1);
             }
         }
         levels = levelArray;
     }
 
     //array operator em Memory percorre levels
-    public bool this[int i] {
+    public int this[int i] {
         get { return levels[i]; }
-        set { bool[] levelArray = levels; levelArray[i] = value; PlayerPrefsX.SetBoolArray("Levels", levelArray); }
+        set { int[] levelArray = levels; levelArray[i] = value; PlayerPrefsX.SetIntArray("Levels", levelArray); }
     }
 
     public static void UnlockLevel(int n) {
@@ -84,7 +78,19 @@ public class Memory: IEnumerable<Node> {
     }
 
     public static void BuyBall(int n) {
-
+        int[] levelArray = levels;
+        for (int i = 0; i < levelArray.Length; i++) {
+            if(LevelBall.levelBall[i] == n) {
+                if (tree[i].parent.All(v => (levelArray[v] == 2))) {
+                    levelArray[i] = Mathf.Max(levelArray[i], 1);
+                    //Debug.Log("0 pode");
+                }
+                else {
+                    //if (i == 0) Debug.Log("0 nao pode");
+                }
+            }
+        }
+        levels = levelArray;
     }
 
     
